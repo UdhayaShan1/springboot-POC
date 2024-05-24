@@ -1,11 +1,10 @@
-package com.integration.controller;
+package com.sg.gov.hdb.marvel.controller;
 
-import com.integration.model.MessageRequest;
-import com.integration.service.KafkaProducerService;
-import com.integration.service.MessageService;
-import com.integration.model.Message;
+import com.sg.gov.hdb.marvel.model.MessageRequest;
+import com.sg.gov.hdb.marvel.service.KafkaProducerService;
+import com.sg.gov.hdb.marvel.service.MessageService;
+import com.sg.gov.hdb.marvel.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

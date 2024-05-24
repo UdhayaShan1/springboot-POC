@@ -1,7 +1,7 @@
-package com.integration.service;
+package com.sg.gov.hdb.marvel.service;
 
-import com.integration.model.Message;
-import com.integration.repository.MessageRepository;
+import com.sg.gov.hdb.marvel.model.Message;
+import com.sg.gov.hdb.marvel.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

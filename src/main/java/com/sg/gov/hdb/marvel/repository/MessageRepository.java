@@ -1,6 +1,6 @@
-package com.integration.repository;
+package com.sg.gov.hdb.marvel.repository;
 
-import com.integration.model.Message;
+import com.sg.gov.hdb.marvel.model.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,9 @@
-package com.integration.service;
+package com.sg.gov.hdb.marvel.service;
 
 import java.util.List;
 
-import com.integration.model.CustomerOrder;
-import com.integration.repository.OrderRepository;
+import com.sg.gov.hdb.marvel.model.CustomerOrder;
+import com.sg.gov.hdb.marvel.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

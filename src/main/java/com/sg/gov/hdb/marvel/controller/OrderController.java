@@ -1,8 +1,12 @@
-package com.integration.controller;
+package com.sg.gov.hdb.marvel.controller;
 
 
 import java.util.List;
 
+import com.sg.gov.hdb.marvel.model.CustomerOrder;
+import com.sg.gov.hdb.marvel.model.MessageRequest;
+import com.sg.gov.hdb.marvel.service.KafkaProducerService;
+import com.sg.gov.hdb.marvel.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.integration.model.CustomerOrder;
-import com.integration.model.MessageRequest;
-import com.integration.service.KafkaProducerService;
-import com.integration.service.MessageService;
-import com.integration.service.OrderService;
 
 @RestController
 @RequestMapping("/orders")

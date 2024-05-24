@@ -1,9 +1,9 @@
-package com.integration.config;
+package com.sg.gov.hdb.marvel.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.integration.repository")
+@EnableJpaRepositories(basePackages = "com.sg.gov.hdb.marvel.repository")
 public class RdsConfig {
 }

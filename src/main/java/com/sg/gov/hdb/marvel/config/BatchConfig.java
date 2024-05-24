@@ -1,9 +1,9 @@
-package com.integration.config;
+package com.sg.gov.hdb.marvel.config;
 
-import com.integration.model.Message;
-import com.integration.model.CustomerOrder;
-import com.integration.repository.MessageRepository;
-import com.integration.repository.OrderRepository;
+import com.sg.gov.hdb.marvel.model.Message;
+import com.sg.gov.hdb.marvel.model.CustomerOrder;
+import com.sg.gov.hdb.marvel.repository.MessageRepository;
+import com.sg.gov.hdb.marvel.repository.OrderRepository;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

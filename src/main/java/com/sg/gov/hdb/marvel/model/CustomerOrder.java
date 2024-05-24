@@ -1,16 +1,17 @@
-package com.integration.model;
+package com.sg.gov.hdb.marvel.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
-public class Message {
+@Entity(name = "customer_order")
+public class CustomerOrder {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String content;
+    private String orderDescription;
 
     // Getters and setters
     public Long getId() {
@@ -21,11 +22,11 @@ public class Message {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getOrderNumber() {
+        return orderDescription;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setOrderDescription(String orderNumber) {
+        this.orderDescription = orderNumber;
     }
 }

@@ -1,4 +1,4 @@
-package com.integration.model;
+package com.sg.gov.hdb.marvel.model;
 public class MessageRequest {
     private String message;
 

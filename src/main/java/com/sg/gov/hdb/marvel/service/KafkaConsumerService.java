@@ -1,15 +1,14 @@
-package com.integration.service;
+package com.sg.gov.hdb.marvel.service;
 
+import com.sg.gov.hdb.marvel.model.Message;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import com.integration.model.Message;
-import com.integration.model.CustomerOrder;
-import com.integration.repository.MessageRepository;
-import com.integration.repository.OrderRepository;
+import com.sg.gov.hdb.marvel.repository.MessageRepository;
+import com.sg.gov.hdb.marvel.repository.OrderRepository;
 
 @Service
 public class KafkaConsumerService {

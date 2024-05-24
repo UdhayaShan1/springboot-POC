@@ -1,6 +1,6 @@
-package com.integration.repository;
+package com.sg.gov.hdb.marvel.repository;
 
-import com.integration.model.CustomerOrder;
+import com.sg.gov.hdb.marvel.model.CustomerOrder;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
