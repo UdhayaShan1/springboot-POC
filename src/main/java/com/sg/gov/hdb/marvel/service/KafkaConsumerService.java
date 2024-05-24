@@ -31,6 +31,7 @@ public class KafkaConsumerService {
             // Save the received message to the database
             Message message = new Message();
             message.setContent(messageContent);
+            message.setStatus("NEW");
             messageRepository.save(message);
 
             // Start the batch job

@@ -5,6 +5,7 @@ import com.sg.gov.hdb.marvel.model.CustomerOrder;
 import com.sg.gov.hdb.marvel.repository.MessageRepository;
 import com.sg.gov.hdb.marvel.repository.OrderRepository;
 
+import com.sg.gov.hdb.marvel.service.MessageService;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -30,6 +31,9 @@ public class BatchConfig {
 
     @Autowired
     private MessageRepository messageRepository;
+
+    @Autowired
+    private MessageService messageService;
 
     @Autowired
     private OrderRepository orderRepository;
@@ -66,7 +70,7 @@ public class BatchConfig {
         return new JpaPagingItemReaderBuilder<Message>()
                 .name("messageReader")
                 .entityManagerFactory(entityManagerFactory)
-                .queryString("SELECT m FROM Message m")
+                .queryString("SELECT m FROM Message m WHERE m.status = 'NEW'")
                 .pageSize(10)
                 .build();
     }
@@ -74,6 +78,7 @@ public class BatchConfig {
     @Bean
     public ItemProcessor<Message, CustomerOrder> processor() {
         return message -> {
+            messageService.updateStatus(message.getId(), "COMPLETED");
             CustomerOrder newOrder = new CustomerOrder();
             newOrder.setOrderDescription(message.getContent());
             return newOrder;

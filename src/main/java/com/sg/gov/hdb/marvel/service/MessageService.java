@@ -21,5 +21,14 @@ public class MessageService {
         messageRepository.deleteAll();
     }
 
+    public Message updateStatus(Long id, String status) {
+        Message message = messageRepository.findById(id).orElse(null);
+        if (message != null) {
+            message.setStatus(status);
+            messageRepository.save(message);
+            return message;
+        }
+        return null;
+    }
 
 }

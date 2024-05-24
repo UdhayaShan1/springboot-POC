@@ -36,4 +36,14 @@ public class MessageController {
         messageService.deleteAllMessages();
         return ResponseEntity.ok("All messages have been deleted");
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Message> updateMessageStatus(@PathVariable Long id, @RequestBody MessageRequest status) {
+        Message updatedMessage = messageService.updateStatus(id, status.getMessage());
+        if (updatedMessage != null) {
+            return ResponseEntity.ok(updatedMessage);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
