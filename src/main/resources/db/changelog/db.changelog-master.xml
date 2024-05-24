@@ -30,5 +30,13 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="4" author="udhay">
+        <addColumn tableName="message">
+            <column name="status" type="VARCHAR(50)" defaultValue="NEW">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 
 </databaseChangeLog>
