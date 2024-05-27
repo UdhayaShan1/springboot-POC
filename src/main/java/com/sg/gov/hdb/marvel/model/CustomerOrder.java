@@ -1,9 +1,6 @@
 package com.sg.gov.hdb.marvel.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "customer_order")
 public class CustomerOrder {
@@ -12,6 +9,10 @@ public class CustomerOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String orderDescription;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)  // Allowing null values
+    private User user;
 
     // Getters and setters
     public Long getId() {
@@ -28,5 +29,17 @@ public class CustomerOrder {
 
     public void setOrderDescription(String orderNumber) {
         this.orderDescription = orderNumber;
+    }
+
+    public String getOrderDescription() {
+        return orderDescription;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
