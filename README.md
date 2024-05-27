@@ -1,1 +1,9 @@
-Just a playground repo to learn the tech stack needed for my HDB internship.
+Proof of concept repository to showcase implementation of Springboot framework, includes/implements
+- Springboot
+- Spring batch
+- Spring MVC
+- Spring JPA
+- Liquibase
+- Hibernate JPA
+- Apache Kafka
+- (Not in repo, obv) mySQL
