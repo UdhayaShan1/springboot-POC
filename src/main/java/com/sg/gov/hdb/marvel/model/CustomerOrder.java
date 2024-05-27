@@ -1,6 +1,9 @@
 package com.sg.gov.hdb.marvel.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
+import java.util.Optional;
 
 @Entity(name = "customer_order")
 public class CustomerOrder {
@@ -12,6 +15,7 @@ public class CustomerOrder {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)  // Allowing null values
+    @JsonBackReference
     private User user;
 
     // Getters and setters
@@ -27,8 +31,8 @@ public class CustomerOrder {
         return orderDescription;
     }
 
-    public void setOrderDescription(String orderNumber) {
-        this.orderDescription = orderNumber;
+    public void setOrderDescription(String orderDescription) {
+        this.orderDescription = orderDescription;
     }
 
     public String getOrderDescription() {
@@ -41,5 +45,12 @@ public class CustomerOrder {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return id + " "
+                + orderDescription
+                + Optional.of(user).map(User::toString).orElse("None");
     }
 }

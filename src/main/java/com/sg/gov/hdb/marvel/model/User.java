@@ -1,5 +1,6 @@
 package com.sg.gov.hdb.marvel.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.persistence.GenerationType;
 
@@ -13,6 +14,7 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<CustomerOrder> orders;
 
     public Long getId() {
@@ -37,6 +39,11 @@ public class User {
 
     public void setOrders(List<CustomerOrder> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return id + " " + name;
     }
 
 
