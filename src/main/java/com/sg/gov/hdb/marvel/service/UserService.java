@@ -1,11 +1,14 @@
 package com.sg.gov.hdb.marvel.service;
 
 import com.sg.gov.hdb.marvel.model.CustomerOrder;
+import com.sg.gov.hdb.marvel.model.Transaction;
 import com.sg.gov.hdb.marvel.model.User;
 import com.sg.gov.hdb.marvel.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,6 +66,10 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
+    }
+
     /**
      * Retrieves all orders associated with a specific user.
      *
@@ -72,5 +79,32 @@ public class UserService {
     public List<CustomerOrder> getAllOrdersFromUser(Long id) {
         Optional<User> user = userRepository.findById(id);
         return user.map(User::getOrders).orElse(null);
+    }
+
+    @Transactional
+    public Optional<User> saveTransaction(Long userId, Transaction transaction) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isEmpty()) {
+            return Optional.empty();
+        }
+        User user = optionalUser.get();
+        user.getTransactions().add(transaction); // Add the transaction to the user's list of transactions
+        userRepository.save(user); // Save the user, which will cascade and save the transaction
+        return Optional.of(user);
+    }
+
+    @Transactional
+    public List<Transaction> getAllTransactions(Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        return optionalUser.map(User::getTransactions).orElse(null);
+    }
+
+    public Optional<User> removeAllTransactionsFromUser(Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        optionalUser.ifPresent(user -> {
+           user.getTransactions().clear();
+           userRepository.save(user);
+        });
+        return optionalUser;
     }
 }

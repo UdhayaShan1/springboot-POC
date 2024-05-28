@@ -13,7 +13,7 @@ public class CustomerOrder {
     private Long id;
     private String orderDescription;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = true)  // Allowing null values
     @JsonBackReference
     private User user;
@@ -27,9 +27,6 @@ public class CustomerOrder {
         this.id = id;
     }
 
-    public String getOrderNumber() {
-        return orderDescription;
-    }
 
     public void setOrderDescription(String orderDescription) {
         this.orderDescription = orderDescription;

@@ -57,4 +57,56 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="7" author="udhay">
+        <dropColumn tableName="customer_order" columnName="order_status"/>
+    </changeSet>
+
+    <changeSet id="8" author="udhay">
+        <createTable tableName="transaction">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parking_amount" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parking_type" type="CHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="9" author="udhay">
+        <modifyDataType tableName="transaction" columnName="parking_amount" newDataType="DOUBLE"/>
+    </changeSet>
+
+    <changeSet id="10" author="udhay">
+        <addForeignKeyConstraint baseTableName="transaction"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_transaction_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="11" author="udhay">
+        <dropForeignKeyConstraint baseTableName="transaction" constraintName="fk_transaction_user"/>
+        <dropColumn tableName="transaction" columnName="time"/>
+    </changeSet>
+
+    <changeSet id="12" author="udhay">
+        <addForeignKeyConstraint baseTableName="transaction"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_transaction_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+
+
 </databaseChangeLog>

@@ -8,7 +8,11 @@ import com.sg.gov.hdb.marvel.model.User;
 import com.sg.gov.hdb.marvel.repository.OrderRepository;
 import com.sg.gov.hdb.marvel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Service
 public class OrderService {
@@ -17,6 +21,8 @@ public class OrderService {
     private OrderRepository orderRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     /**
      * Saves the given order to the repository.
@@ -82,4 +88,6 @@ public class OrderService {
         }
         return Optional.empty();
     }
+
+
 }
