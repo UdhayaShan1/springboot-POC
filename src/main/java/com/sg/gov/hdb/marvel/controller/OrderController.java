@@ -51,7 +51,7 @@ public class OrderController {
     /**
      * Deletes all customer orders.
      */
-    @DeleteMapping()
+    @DeleteMapping("/deleteall")
     public void deleteAllOrders() {
         orderService.deleteAllOrders();
     }

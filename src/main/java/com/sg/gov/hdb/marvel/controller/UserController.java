@@ -56,7 +56,7 @@ public class UserController {
      * @return a ResponseEntity with HTTP status code
      */
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteUser(@RequestParam Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -97,5 +97,11 @@ public class UserController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @DeleteMapping("/deleteall")
+    public ResponseEntity<Void> deleteAllOrders() {
+        userService.deleteAllUsers();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

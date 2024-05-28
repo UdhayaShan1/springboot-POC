@@ -63,6 +63,10 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
+    }
+
     /**
      * Retrieves all orders associated with a specific user.
      *
