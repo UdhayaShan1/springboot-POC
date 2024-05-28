@@ -2,13 +2,17 @@ package com.sg.gov.hdb.marvel.controller;
 
 import com.sg.gov.hdb.marvel.model.CustomerOrder;
 import com.sg.gov.hdb.marvel.model.MessageRequest;
+import com.sg.gov.hdb.marvel.model.Transaction;
 import com.sg.gov.hdb.marvel.model.User;
+import com.sg.gov.hdb.marvel.service.TransactionService;
 import com.sg.gov.hdb.marvel.service.UserService;
+import liquibase.change.core.RenameSequenceChange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.table.TableRowSorter;
 import java.util.List;
 
 @RestController
@@ -103,5 +107,28 @@ public class UserController {
     public ResponseEntity<Void> deleteAllOrders() {
         userService.deleteAllUsers();
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/addtransaction/{userId}")
+    public ResponseEntity<User> addTransaction(@PathVariable Long userId, @RequestBody Transaction transaction) {
+        return userService.saveTransaction(userId, transaction).map(user -> {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }).orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
+    }
+
+    @GetMapping("/{userId}/transactions")
+    public ResponseEntity<List<Transaction>> getTransactions(@PathVariable Long userId) {
+        List<Transaction> listOfTransactions = userService.getAllTransactions(userId);
+        if (listOfTransactions == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(listOfTransactions, HttpStatus.OK);
+    }
+
+    @PutMapping("/deletetransactions/{userId}")
+    public ResponseEntity<User> removeAllTransactionsFromUser(@PathVariable Long userId) {
+        return userService.removeAllTransactionsFromUser(userId)
+                .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 }
