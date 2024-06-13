@@ -1,14 +1,20 @@
-# Use the official OpenJDK image as a base image
-FROM openjdk:17-jdk-alpine
+# Use an official Gradle image with JDK 17 to build the application
+FROM gradle:7.6-jdk17 as builder
+WORKDIR /home/gradle/project
+COPY . .
 
-# Set the working directory inside the container
+# Build the application
+RUN gradle build -x test
+
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
-# Copy the built JAR file into the container
-COPY build/libs/*.jar app.jar
+# Copy the jar file from the build stage
+COPY --from=builder /home/gradle/project/build/libs/*.jar app.jar
 
-# Expose the port on which the application runs
+# Expose the port the app runs on
 EXPOSE 8080
 
-# Define the entry point for the container
+# Run the jar file
 ENTRYPOINT ["java", "-jar", "app.jar"]
