@@ -25,7 +25,7 @@ public class KafkaConsumerService {
     @Autowired
     private Job job;
 
-    @KafkaListener(topics = "udhayacode", groupId = "batch-consumer-group")
+    //@KafkaListener(topics = "udhayacode", groupId = "batch-consumer-group")
     public void listen(String messageContent) {
         try {
             // Save the received message to the database

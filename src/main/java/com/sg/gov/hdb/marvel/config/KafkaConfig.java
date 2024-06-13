@@ -16,7 +16,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
 @Configuration
 @EnableKafka
 public class KafkaConfig {
@@ -55,3 +55,6 @@ public class KafkaConfig {
         return new DefaultKafkaConsumerFactory<>(configProps);
     }
 }
+
+
+ */

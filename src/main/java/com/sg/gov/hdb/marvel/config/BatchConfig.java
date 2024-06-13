@@ -30,7 +30,7 @@ import jakarta.persistence.EntityManagerFactory;
 public class BatchConfig {
 
     @Autowired
-    private MessageRepository messageRepository;
+    private MessageRepository msg   ;
 
     @Autowired
     private MessageService messageService;

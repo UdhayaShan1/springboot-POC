@@ -28,10 +28,21 @@ dependencies {
     implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
     implementation 'org.springframework.boot:spring-boot-starter-batch'
     implementation 'org.liquibase:liquibase-core:4.28.0'  // Update to the latest version
+    runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.batch:spring-batch-test'
+    implementation 'org.hibernate:hibernate-core:6.1.5.Final'
+
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.sg.gov.hdb.marvel.Demo2Application'
+        )
+    }
 }
