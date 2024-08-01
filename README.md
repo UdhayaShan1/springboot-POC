@@ -6,4 +6,4 @@ Proof of concept repository to showcase implementation of Springboot framework, 
 - Liquibase
 - Hibernate JPA
 - Apache Kafka
-- (Not in repo, obv) mySQL
+- mySQL
